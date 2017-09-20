@@ -1,0 +1,124 @@
+Test Case 1
+-----------
+
+int i;
+i = 0;
+end
+
+Bytecodes:
+
+0: iconst_0
+1: istore_0
+2: return
+
+---------------
+
+Test Case 2 - literal constants
+
+int i1, j23, k456;
+i1 = 5;
+j23 = 127;
+k456 = 128;
+end
+
+Bytecodes:
+
+0: iconst_5
+1: istore_0
+2: bipush 127
+4: istore_1
+5: sipush 128
+8: istore_2
+9: return 
+
+----------------
+
+Test Case 3 - compound statements
+
+int a, b, c;
+{a = 1;
+ { b = 2;
+   { c = 3;
+   }
+   b = b + c;
+ }
+ a = a + b;
+}
+end
+
+Bytecodes:
+
+0: iconst_1
+1: istore_0
+2: iconst_2
+3: istore_1
+4: iconst_3
+5: istore_2
+6: iload_1
+7: iload_2
+8: iadd
+9: istore_1
+10: iload_0
+11: iload_1
+12: iadd
+13: istore_0
+14: return
+
+----------------
+
+Test Case 4 - expressions and statements more than four variables
+
+int x, y, z, p, q;
+x = 1;
+y = x*10 - 1;
+z = y*100 + x * 10;
+p = ((x + 1) * (y - 20)) / (z+300);
+q = p * p;
+q = q - 1;
+end
+
+Bytecodes:
+
+0: iconst_1
+1: istore_0
+2: iload_0
+3: bipush 10
+5: imul
+6: iconst_1
+7: isub
+8: istore_1
+9: iload_1
+10: bipush 100
+12: imul
+13: iload_0
+14: bipush 10
+16: imul
+17: iadd
+18: istore_2
+19: iload_0
+20: iconst_1
+21: iadd
+22: iload_1
+23: bipush 20
+25: isub
+26: imul
+27: iload_2
+28: sipush 300
+31: iadd
+32: idiv
+33: istore_3
+34: iload_3
+35: iload_3
+36: imul
+37: istore 4
+39: iload 4
+41: iconst_1
+42: isub
+43: istore 4
+45: return
+
+
+ 
+----------------- End of Test Cases for Part 1 --------------
+
+
